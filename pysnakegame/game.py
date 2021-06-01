@@ -29,12 +29,12 @@ class Game:
         self.map_positions = self._generate_map_positions()
 
         # Define fonts
-        self.small_font = pygame.font.Font("pysnakegame\\fonts\\snake_font.ttf", 18)
-        self.big_font = pygame.font.Font("pysnakegame\\fonts\\snake_font.ttf", 60)
+        self.small_font = pygame.font.Font("pysnakegame/fonts/snake_font.ttf", 18)
+        self.big_font = pygame.font.Font("pysnakegame/fonts/snake_font.ttf", 60)
 
         # Define sounds
-        self.game_over_sound = pygame.mixer.Sound("pysnakegame\\sounds\\game_over.mp3")
-        self.apple_eat_sound = pygame.mixer.Sound("pysnakegame\\sounds\\apple_eat.mp3")
+        self.game_over_sound = pygame.mixer.Sound("pysnakegame/sounds/game_over.ogg")
+        self.apple_eat_sound = pygame.mixer.Sound("pysnakegame/sounds/apple_eat.ogg")
 
         # Agrupa todas as sprites juntas para deixar fácil de atualizar.
         self.all_sprites = pygame.sprite.Group()
