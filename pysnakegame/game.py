@@ -8,12 +8,13 @@ from sprites.apple import Apple
 class Game:
 
     # Define constantes do game
-    WIDTH = 360
-    HEIGHT = 300
+    WIDTH = 800
+    HEIGHT = 600
     BLOCK_SIZE = 20
     FPS = 10
 
     # Define cores
+    BLACK = (0, 0, 0)
     RED = (255, 0, 0)
     GREEN = (0, 255, 0)
     DARKGREEN = (11, 83, 69)
