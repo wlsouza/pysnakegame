@@ -1,4 +1,4 @@
-import os
+import sys
 import pygame
 import random
 from sprites.snake import Snake
@@ -8,21 +8,27 @@ from sprites.apple import Apple
 class Game:
 
     # Define constantes do game
-    WIDTH = 600
-    HEIGHT = 600
+    WIDTH = 500
+    HEIGHT = 400
     BLOCK_SIZE = 20
     FPS = 10
 
     # Define cores
     BLACK = (0, 0, 0)
     RED = (255, 0, 0)
-    GREEN = (0, 255, 0)
     DARKGREEN = (11, 83, 69)
     SKYBLUE = (133, 193, 233)
     STEELBLUE = (46, 134, 193)
 
     def __init__(self):
-        pygame.init()  # Inicia o pygame
+        # Inicia o game
+        check_errors = pygame.init()
+        # checa se algum erro foi retornado
+        if check_errors[1] > 0:
+            print(f"{check_errors[1]} errors found when starting game, exiting...")
+            sys.exit()
+        else:
+            print('Game Loaded!')
         pygame.mixer.init()  # Para iniciar o som
         pygame.display.set_caption("Pysnakegame")
         self.screen = pygame.display.set_mode((self.WIDTH, self.HEIGHT))
@@ -157,7 +163,8 @@ class Game:
         score_text = self.small_font.render(
             f"{len(self.snake.body)-1} pontos", True, self.BLACK
         )
-        self.screen.blit(score_text, (self.WIDTH - 120, 3))
+        score_rect = score_text.get_rect(topright=(self.WIDTH-5, 5))
+        self.screen.blit(score_text, score_rect)
 
     def _game_over(self, msg):
         self.game_over = True
