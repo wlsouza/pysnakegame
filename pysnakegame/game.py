@@ -47,11 +47,10 @@ class Game:
             body_part_size=self.BLOCK_SIZE,
         )
         self.apple = Apple(
-            screen=self.screen,
-            color=self.RED,
-            size=self.BLOCK_SIZE,
-            start_pos_x=self.WIDTH / 2,
-            start_pos_y=self.HEIGHT / 2,
+            self.screen,
+            self.RED,
+            self.BLOCK_SIZE,
+            *self._generate_apple_position(),
         )
         self.all_sprites.add(self.snake)
         self.all_sprites.add(self.apple)
