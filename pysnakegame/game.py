@@ -65,7 +65,7 @@ class Game:
 
             # 1 Processa eventos/inputs
             self._check_game_over_events()
-            self._check_events()
+            self._check_game_events()
 
             # 2 Draw/render
             self._draw_grid()
@@ -102,7 +102,7 @@ class Game:
             self.game_over_sound.play()
             self._game_over("Game Over")
 
-    def _check_events(self):
+    def _check_game_events(self):
         for event in pygame.event.get():
             # Escuta teclas pressionadas
             if event.type == pygame.KEYDOWN:
@@ -122,8 +122,8 @@ class Game:
                     and self.snake.current_direction != "left"
                 ):
                     self.snake.current_direction = "right"
-                elif event.key == pygame.K_SPACE:
-                    self.snake.current_direction = None
+                # elif event.key == pygame.K_SPACE: # pause the game
+                #     self.snake.current_direction = None
                 elif event.key == pygame.K_ESCAPE:
                     self.running = False
             elif event.type == pygame.QUIT:
