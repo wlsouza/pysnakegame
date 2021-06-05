@@ -87,7 +87,7 @@ class Game:
         if self.snake.head_rect.colliderect(self.apple.rect):
             self.apple_eat_sound.play()
             self.snake.increase_body()
-            if len(self.snake.body) != len(self.map_positions):
+            if len(self.snake.body) == len(self.map_positions):
                 self._game_over("You win!!")
             else:
                 self.apple.move(self._generate_apple_position())
