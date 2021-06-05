@@ -8,7 +8,7 @@ from sprites.apple import Apple
 class Game:
 
     # Define constantes do game
-    WIDTH = 800
+    WIDTH = 600
     HEIGHT = 600
     BLOCK_SIZE = 20
     FPS = 8
@@ -64,8 +64,8 @@ class Game:
             self.clock.tick(self.FPS)
 
             # 1 Processa eventos/inputs
-            self._check_events()
             self._check_game_over_events()
+            self._check_events()
 
             # 2 Draw/render
             self._draw_grid()
@@ -87,22 +87,20 @@ class Game:
         if self.snake.head_rect.colliderect(self.apple.rect):
             self.apple_eat_sound.play()
             self.snake.increase_body()
-            self.apple.move(self._generate_apple_position())
+            if len(self.snake.body) != len(self.map_positions):
+                self._game_over("You win!!")
+            else:
+                self.apple.move(self._generate_apple_position())
 
         # checando se houve colisão da cabeça da cobra com seu corpo.
         if self.snake.head_rect.collidelist(self.snake.body_rects) != -1:
             self.game_over_sound.play()
-            self._game_over()
+            self._game_over("Game Over")
 
         # checando se a cabeça da cobra saiu do mapa (vulgo bateu nas paredes)
         if self.snake.head not in self.map_positions:
             self.game_over_sound.play()
-            self._game_over()
-
-    def _check_win(self):
-        # checando se a cobra é do mesmo tamanho que o mapa
-        if len(self.snake.body) == len(self.map_positions):
-            ...
+            self._game_over("Game Over")
 
     def _check_events(self):
         for event in pygame.event.get():
@@ -155,12 +153,17 @@ class Game:
         )
         self.screen.blit(score_text, (self.WIDTH - 118, 3))
 
-    def _game_over(self):
+    def _game_over(self, msg):
         self.game_over = True
         self._fade_screen()
-        game_over_text = self.big_font.render(f"Fim de jogo", True, self.BLACK)
-        self.screen.blit(game_over_text, (self.WIDTH // 5, self.HEIGHT // 3))
-        self.snake.reset()
+        game_over_text = self.big_font.render(msg, True, self.BLACK)
+        continue_text = self.small_font.render("Press SPACE to continue", True, self.BLACK)
+        # pegando os rects para alinhar o texto no centro da tela
+        game_over_rect = game_over_text.get_rect(center=(self.WIDTH/2, self.HEIGHT/2.5))
+        continue_rect = continue_text.get_rect(center=(self.WIDTH/2, self.HEIGHT/2))
+        self.screen.blit(game_over_text, game_over_rect)
+        self.screen.blit(continue_text, continue_rect)
+        self.snake.reset()    
 
     def _fade_screen(self):
         surf = pygame.Surface((self.WIDTH, self.HEIGHT), pygame.SRCALPHA)
