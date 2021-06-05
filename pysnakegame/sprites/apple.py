@@ -1,9 +1,5 @@
 import pygame
 
-
-from pygame.constants import K_x
-
-
 class Apple(pygame.sprite.Sprite):
     def __init__(self, screen, color, size, start_pos_x, start_pos_y):
         super().__init__()

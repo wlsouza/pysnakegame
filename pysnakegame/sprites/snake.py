@@ -1,7 +1,5 @@
 import pygame
 
-from pygame.constants import K_x
-
 
 class Snake(pygame.sprite.Sprite):
     def __init__(self, screen, color, body_part_size):
@@ -62,20 +60,20 @@ class Snake(pygame.sprite.Sprite):
     def draw(self):
         self.rects = []
         for body_part in self.body:
-            pos_x, pos_y = body_part
             rect = pygame.Rect(
-                (pos_x, pos_y), (self.body_part_size, self.body_part_size)
+                body_part, (self.body_part_size, self.body_part_size)
             )
             if body_part == self.head:
-                self._draw_tong(rect, pos_x, pos_y)
-            self._draw_body(rect, pos_x, pos_y)
+                self._draw_tong(rect)
+            self._draw_body(rect)
             self.rects.append(rect)
 
-    def _draw_body(self, rect, pos_x, pos_y):
+    def _draw_body(self, rect):
+        pos_x, pos_y = rect.x, rect.y
         pygame.draw.rect(self.screen, self.color, rect)
         pygame.draw.rect(
             self.screen,
-            (self.color[2], self.color[1], self.color[0]),
+            (self.color[2], self.color[1], self.color[0]), # mix color values
             (
                 pos_x + (self.body_part_size // 4),
                 pos_y + (self.body_part_size // 4),
@@ -84,7 +82,8 @@ class Snake(pygame.sprite.Sprite):
             ),
         )
 
-    def _draw_tong(self, rect, pos_x, pos_y):
+    def _draw_tong(self, rect):
+        pos_x, pos_y = rect.x, rect.y
         if self.current_direction == "up":
             pygame.draw.line(
                 self.screen,

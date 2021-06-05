@@ -11,7 +11,7 @@ class Game:
     WIDTH = 600
     HEIGHT = 600
     BLOCK_SIZE = 20
-    FPS = 8
+    FPS = 10
 
     # Define cores
     BLACK = (0, 0, 0)
@@ -75,14 +75,14 @@ class Game:
             self.all_sprites.update()
 
             # 4 colisões
-            self._check_collision()
+            self._check_collisions()
 
             # Atualiza o display
             pygame.display.flip()
 
         pygame.quit()
 
-    def _check_collision(self):
+    def _check_collisions(self):
         # checando se houve colisão da cabeça da cobra com a maça
         if self.snake.head_rect.colliderect(self.apple.rect):
             self.apple_eat_sound.play()
