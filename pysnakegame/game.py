@@ -108,19 +108,23 @@ class Game:
         for event in pygame.event.get():
             # Escuta teclas pressionadas
             if event.type == pygame.KEYDOWN:
-                if event.key == pygame.K_UP and self.snake.current_direction != "down":
+                if (
+                    (event.key == pygame.K_UP or event.key == ord('w'))
+                    and self.snake.current_direction != "down"
+                ):
                     self.snake.current_direction = "up"
                 elif (
-                    event.key == pygame.K_DOWN and self.snake.current_direction != "up"
+                    (event.key == pygame.K_DOWN or event.key == ord('s'))
+                    and self.snake.current_direction != "up"
                 ):
                     self.snake.current_direction = "down"
                 elif (
-                    event.key == pygame.K_LEFT
+                    (event.key == pygame.K_LEFT or event.key == ord('a'))
                     and self.snake.current_direction != "right"
                 ):
                     self.snake.current_direction = "left"
                 elif (
-                    event.key == pygame.K_RIGHT
+                    (event.key == pygame.K_RIGHT or event.key == ord('d'))
                     and self.snake.current_direction != "left"
                 ):
                     self.snake.current_direction = "right"
