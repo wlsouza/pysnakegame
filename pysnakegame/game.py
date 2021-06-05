@@ -11,7 +11,7 @@ class Game:
     WIDTH = 800
     HEIGHT = 600
     BLOCK_SIZE = 20
-    FPS = 10
+    FPS = 8
 
     # Define cores
     BLACK = (0, 0, 0)

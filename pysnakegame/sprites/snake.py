@@ -18,6 +18,10 @@ class Snake(pygame.sprite.Sprite):
         return self.body[-1]
 
     @property
+    def tail(self):
+        return self.body[0]
+
+    @property
     def head_rect(self):
         return self.rects[-1]
 
@@ -32,23 +36,24 @@ class Snake(pygame.sprite.Sprite):
     def move(self):
         if self.current_direction:
             # adiciona a parte da frente do corpo (a cabeça)
-            self.increase_body()
+            pos_x, pos_y = self.head
+
+            if self.current_direction == "up":
+                pos_y -= self.body_part_size
+            elif self.current_direction == "down":
+                pos_y += self.body_part_size
+            elif self.current_direction == "left":
+                pos_x -= self.body_part_size
+            elif self.current_direction == "right":
+                pos_x += self.body_part_size
+            self.body.append((pos_x, pos_y))
+
             # remove a primeira parte do corpo da cobra (a cauda)
             self.body.pop(0)
 
     def increase_body(self):
-        # pega a ultima parte do corpo da cobra (a cabeça)
-        pos_x, pos_y = self.head
-
-        if self.current_direction == "up":
-            pos_y -= self.body_part_size
-        elif self.current_direction == "down":
-            pos_y += self.body_part_size
-        elif self.current_direction == "left":
-            pos_x -= self.body_part_size
-        elif self.current_direction == "right":
-            pos_x += self.body_part_size
-        self.body.append((pos_x, pos_y))
+        # adiciona mais uma parte do corpo na mesma posição que a cauda
+        self.body.insert(0,self.tail)
 
     def reset(self):
         self.body = [(0, 0)]
