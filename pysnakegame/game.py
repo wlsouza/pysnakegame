@@ -30,17 +30,18 @@ class Game:
         self.map_positions = self._generate_map_positions()
 
         # Define fonts
-        self.small_font = pygame.font.Font("pysnakegame/fonts/snake_font.ttf", 18)
         self.big_font = pygame.font.Font("pysnakegame/fonts/snake_font.ttf", 60)
+        self.small_font = pygame.font.Font("pysnakegame/fonts/snake_font.ttf", 18)
 
         # Define sounds
+        self.win_sound = pygame.mixer.Sound("pysnakegame/sounds/win.ogg")
         self.game_over_sound = pygame.mixer.Sound("pysnakegame/sounds/game_over.ogg")
         self.apple_eat_sound = pygame.mixer.Sound("pysnakegame/sounds/apple_eat.ogg")
 
         # Agrupa todas as sprites juntas para deixar fácil de atualizar.
         self.all_sprites = pygame.sprite.Group()
 
-        # cria a cobra e maça
+        # cria a cobra e a maça
         self.snake = Snake(
             screen=self.screen,
             color=self.DARKGREEN,
@@ -88,6 +89,7 @@ class Game:
             self.apple_eat_sound.play()
             self.snake.increase_body()
             if len(self.snake.body) == len(self.map_positions):
+                self.win_sound.play()
                 self._game_over("You win!!")
             else:
                 self.apple.move(self._generate_apple_position())
@@ -151,7 +153,7 @@ class Game:
         score_text = self.small_font.render(
             f"{len(self.snake.body)-1} pontos", True, self.BLACK
         )
-        self.screen.blit(score_text, (self.WIDTH - 118, 3))
+        self.screen.blit(score_text, (self.WIDTH - 120, 3))
 
     def _game_over(self, msg):
         self.game_over = True
