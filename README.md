@@ -25,15 +25,15 @@ pip install pygame
 python pysnakegame\game.py
 ```
 
-## Prerequisites
+## 🛠️ dependencies
 * [Python](https://www.python.org)
 * [Pygame](https://www.pygame.org/wiki/GettingStarted) - An open source Python library for making multimedia applications
 
-## Authors
+## 💻 Authors
 
 * **Wellington Lorenço de Souza**
 
 See also the list of [contributors](https://github.com/wlsouza/pysnakegame/graphs/contributors) who participated in this project.
 
-## Acknowledgements
+## 📚 Acknowledgements
 * [Pygame Documentations](https://www.pygame.org/docs/)
