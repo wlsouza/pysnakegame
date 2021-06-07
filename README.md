@@ -1,8 +1,12 @@
 # PySnakeGame 🐍🎮
+> A snake game written in Python using the Pygame library.  
+
 [![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
 [![Python 3.9](https://img.shields.io/badge/python-_>=_3.9-blue.svg)](https://www.python.org/downloads/release/python-390/)
 
-A snake game written in Python using the Pygame library.  
+<p align="center">
+   <img src=".github/preview/demo.gif" width="500"/>
+</p>
 
 ## Installing and Running
 * Download the Python 3.9 or newer installer package from the official website and install it, if not installed previously.
