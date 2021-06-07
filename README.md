@@ -8,7 +8,10 @@
    <img src=".github/preview/demo.gif" width="500"/>
 </p>
 
-## Installing and Running
+## :dart: Goal
+The goal of this project was to explore the library pygame so that I could better understand its use and functioning<strike>, and have fun programming a game in python 😅 </strike>. 
+
+## :construction_worker: Installing and Running
 * Download the Python 3.9 or newer installer package from the official website and install it, if not installed previously.
 
 
